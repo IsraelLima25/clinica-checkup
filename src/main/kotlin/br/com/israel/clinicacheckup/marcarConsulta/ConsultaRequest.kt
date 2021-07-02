@@ -7,17 +7,11 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Positive
 
-class ConsultaRequest(rgPaciente: String, idPlantao: Long, plano: Plano) {
-    @NotBlank
-    val rgPaciente: String = rgPaciente
-
-    @NotNull
-    @Positive
-    val idPlantao: Long = idPlantao
-
-    @NotNull
-    val plano: Plano = plano
-
+class ConsultaRequest(
+    @field:NotBlank val rgPaciente: String,
+    @field:NotNull @field:Positive val idPlantao: Long,
+    @field:NotNull val plano: Plano
+) {
     fun toModel(medico: Medico, paciente: Paciente, plantao: Plantao): Consulta {
         return Consulta(medico = medico, paciente = paciente, plantao = plantao, plano = plano)
     }

@@ -7,29 +7,14 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Past
 import javax.validation.constraints.Size
 
-class MedicoRequest(
-    @NotBlank @Size(max = 4) crm: String,
-    @NotBlank nome: String,
-    @NotNull @Past dataNascimento: LocalDate,
-    tipoEspecialidade: TipoEspecialidade
+data class MedicoRequest(
+    @field:NotBlank @field:Size(max = 4) @field:UniqueValue(domainClass = Medico::class, fieldName = "crm")
+    val crm: String,
+    @field:NotBlank val nome: String,
+    @field:NotNull @field:Past val dataNascimento: LocalDate,
+    @field:NotNull val tipoEspecialidade: TipoEspecialidade
 ) {
-    @UniqueValue(domainClass = Medico::class, fieldName = "crm")
-    @NotBlank
-    @Size(max = 4)
-    val crm: String = crm
-
-    @NotBlank
-    val nome: String = nome
-
-    @NotNull
-    @Past
-    val dataNascimento: LocalDate = dataNascimento
-
-    @NotNull
-    val tipoEspecialidade: TipoEspecialidade = tipoEspecialidade
-
     fun toModel(): Medico {
         return Medico(crm = crm, nome = nome, dataNascimento = dataNascimento)
     }
-
 }

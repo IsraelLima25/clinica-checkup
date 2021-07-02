@@ -3,31 +3,13 @@ package br.com.israel.clinicacheckup.cadastrarPaciente
 import javax.validation.constraints.NotBlank
 
 class EnderecoRequest(
-    @NotBlank logradouro: String,
-    @NotBlank bairro: String,
-    numero: String = "S/N",
-    @NotBlank cidade: String,
-    @NotBlank estado: String,
-    @NotBlank pais: String
+    @field:NotBlank val logradouro: String,
+    @field:NotBlank val bairro: String,
+    val numero: String = "S/N",
+    @field:NotBlank val cidade: String,
+    @field:NotBlank val estado: String,
+    @field:NotBlank val pais: String
 ) {
-
-    @NotBlank
-    val logradouro: String = logradouro
-
-    @NotBlank
-    val bairro: String = bairro
-
-    val numero: String = numero
-
-    @NotBlank
-    val cidade: String = cidade
-
-    @NotBlank
-    val estado: String = estado
-
-    @NotBlank
-    val pais: String = pais
-
 
     fun toModel(): Endereco {
         return Endereco(

@@ -7,7 +7,7 @@ import org.springframework.test.context.ActiveProfiles
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles("teste")
+@ActiveProfiles("test")
 class MarcarConsultaControllerTest {
 
     @Test

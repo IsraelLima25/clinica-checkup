@@ -6,27 +6,14 @@ import javax.validation.Valid
 import javax.validation.constraints.*
 
 class PacienteRequest(
-    @NotBlank rg: String,
-    @NotBlank nome: String,
-    @NotNull @Past dataNascimento: LocalDate,
-    @Valid @NotNull endereco: EnderecoRequest
+    @field:NotBlank @field:UniqueValue(domainClass = Paciente::class, fieldName = "rg")
+    val rg: String,
+    @field:NotBlank val nome: String,
+    @field:NotNull @field:Past val dataNascimento: LocalDate,
+    @field:Valid @field:NotNull val endereco: EnderecoRequest
 ) {
-    @NotBlank
-    val nome: String = nome
-
-    @NotNull
-    @Past
-    val dataNascimento: LocalDate = dataNascimento
-
-    @UniqueValue(domainClass = Paciente::class, fieldName = "rg")
-    @NotBlank
-    val rg: String = rg
-
-    @NotNull
-    @Valid
-    val endereco: EnderecoRequest = endereco
 
     fun toModel(): Paciente {
-        return Paciente(rg=rg,nome = nome,dataNascimento = dataNascimento,endereco = endereco.toModel())
+        return Paciente(rg = rg, nome = nome, dataNascimento = dataNascimento, endereco = endereco.toModel())
     }
 }

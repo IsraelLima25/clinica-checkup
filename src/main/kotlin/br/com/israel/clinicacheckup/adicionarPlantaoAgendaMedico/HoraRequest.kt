@@ -5,13 +5,7 @@ import java.time.LocalTime
 import javax.validation.constraints.NotNull
 
 @HoraPlantao
-class HoraRequest(inicio: LocalTime, fim: LocalTime) {
-    @NotNull
-    val inicio: LocalTime = inicio
-
-    @NotNull
-    val fim: LocalTime = fim
-
+class HoraRequest(@field:NotNull val inicio: LocalTime, @field:NotNull val fim: LocalTime) {
     fun toModel(): Hora {
         return Hora(inicio, fim)
     }

@@ -14,9 +14,7 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/medicos")
 class CadastrarMedicoController(
-    @Autowired
     val medicoRepository: MedicoRepository,
-    @Autowired
     val especialidadeRepository: EspecialidadeRepository
 ) {
 

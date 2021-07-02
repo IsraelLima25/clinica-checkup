@@ -5,22 +5,12 @@ import java.time.LocalDate
 import javax.validation.Valid
 import javax.validation.constraints.*
 
-class PlantaoRequest(crmMedico: String, data: LocalDate, hora: HoraRequest, quantidadePacientesPermitidos: Int) {
-
-    @NotBlank
-    @Size(max = 4)
-    val crmMedico: String = crmMedico
-
-    @NotNull
-    @FutureOrPresent
-    val data: LocalDate = data
-
-    @Valid
-    val hora: HoraRequest = hora
-
-    @NotNull
-    @Positive
-    val quantidadePacientesPermitidos: Int = quantidadePacientesPermitidos
+class PlantaoRequest(
+    @field:NotBlank @field:Size(max = 4) val crmMedico: String,
+    @field:NotNull @field:FutureOrPresent val data: LocalDate,
+    @field:Valid val hora: HoraRequest,
+    @field:NotNull @field:Positive val quantidadePacientesPermitidos: Int
+) {
 
     fun toModel(medico: Medico): Plantao {
         return Plantao(
@@ -30,6 +20,4 @@ class PlantaoRequest(crmMedico: String, data: LocalDate, hora: HoraRequest, quan
             quantidadePacientesPermitidos = quantidadePacientesPermitidos
         )
     }
-
-
 }
